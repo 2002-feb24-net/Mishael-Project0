@@ -1,10 +1,14 @@
-namespace p0
+using System.Collections.Generic;
+using System.Linq;
+
+namespace PZero.lib
 {
-    class Customer
+    public class Customer
     {
         private string fname = "NULL";
         private string lname = "NULL";
         private string regname = "NULL";
+        private List<IOrderCart> history = new List<IOrderCart>();
 
         public Customer(string name)
         {
@@ -16,10 +20,13 @@ namespace p0
             SetName(f, l);
         }
 
-        public string GetName() { return fname + ( lname!="NULL" ? ", " + lname : "" ); }
-        public string GetFName() { return fname; }
-        public string GetLName() { return lname; }
-        public string GetRName() { return regname; }
+        public string GetName() => fname + (lname != "NULL" ? "," + lname : "");
+        public string GetFName() => fname;
+        public string GetLName() => lname;
+        public string GetRName() => regname;
+        public List<IOrderCart> GetOrders() => history;
+
+        public void AddOrder(IOrderCart x) => history.Add(x);
 
         public void SetFirst(string x)
         {
@@ -56,7 +63,7 @@ namespace p0
 
         private void SetRegName()
         {
-            regname = fname.ToUpper() + lname.ToUpper();
+            regname = fname.ToUpper() + (lname != "NULL" ? lname.ToUpper() : "");
         }
 
     }

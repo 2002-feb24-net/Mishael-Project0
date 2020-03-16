@@ -1,6 +1,6 @@
-namespace p0
+namespace PZero.lib
 {
-    class Product
+    public class Product
     {
         string name;
         double price;
