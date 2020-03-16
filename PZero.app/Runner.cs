@@ -28,10 +28,13 @@ namespace PZero.app
                     active = storage.SearchCustomer();
                     break;
                 case "4": break;
+                case "5":
+                    input = Input.GetInput(InputType.unformatedName);
+                    break;
+                case "6": break;
                 case "mng":
                     manageMode = true;
                     state = "none";
-                    running = false;
                     break;
                 case "Q":
                 default:
@@ -59,6 +62,12 @@ namespace PZero.app
                     storage.customers.Remove(active);
                     active = null;
                     break;
+                case "5":
+                    storage.AddStore(input);
+                    break;
+                case "6":
+                    Output.PrintStores(storage.GetStores());
+                    break;
                 default: break;
             }
 
@@ -69,11 +78,46 @@ namespace PZero.app
         {
             bool running = true;
 
-            System.Console.WriteLine("Choose an option by entering a number or enter \'q\' to quit\n1. add Custumer\n2. show all Customer names\n3. set active Customer");
-            if (active != null) System.Console.WriteLine($"active costumer : {active.GetName()}\n4. remove active Customer");
+            System.Console.WriteLine("Enter a number or \'q\' to quit");
+            System.Console.WriteLine("1. Add Customer");
+            System.Console.WriteLine("2. List Customers");
+            System.Console.WriteLine("3. Select active Customer");
+            System.Console.WriteLine("6. List availible stores");
+            if (active != null)
+            {
+                System.Console.WriteLine("Active costumer: " + active.GetName());
+                System.Console.WriteLine("4. Remove active Customer");
+            }
+            if (manageMode)
+            {
+                System.Console.WriteLine("Manager mode:");
+                System.Console.WriteLine("5. Add a store");
+            }
 
-            if (active != null) state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4");
-            else state = Input.GetInput(InputType.mainSelect, "1", "2", "3");
+            if (manageMode)
+            {
+                if (active == null)
+                {
+                    state = Input.GetInput(InputType.mainSelect,"1", "2", "3", "5", "6");
+                }
+                else
+                {
+                    state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "5", "6");
+                }
+            }
+            else
+            {
+                if (active == null)
+                {
+                    state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "6");
+                }
+                else
+                {
+                    state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "6");
+                }
+            }
+            
+            
 
             return running;
         }

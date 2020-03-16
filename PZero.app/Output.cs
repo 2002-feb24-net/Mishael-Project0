@@ -1,4 +1,5 @@
 using PZero.lib;
+using System;
 using System.Collections.Generic;
 
 namespace PZero.app
@@ -30,6 +31,13 @@ namespace PZero.app
             }
 
             System.Console.WriteLine(output);
+        }
+
+        public static void PrintStores(List<Store> x)
+        {
+            string[] print = new string[x.Count];
+            for (int i = 0; i < x.Count; i++) print[i] = x[i].GetName() + "\n";
+            PrintStringList(print);
         }
     }
 }

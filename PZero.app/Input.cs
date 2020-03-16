@@ -1,7 +1,7 @@
 namespace PZero.app
 {
 
-    enum InputType { select, mainSelect, price, name, productName }
+    enum InputType { select, mainSelect, price, name, unformatedName }
     class Input
     {
         public static string GetInput(InputType I, params string[] ops)
@@ -21,8 +21,8 @@ namespace PZero.app
                 case InputType.name:
                     output = GetLetteredString();
                     break;
-                case InputType.productName:
-                    output = GetProductName();
+                case InputType.unformatedName:
+                    output = GetUnformatedName();
                     break;
                 default:
                     System.Console.WriteLine("no input type");
@@ -40,6 +40,11 @@ namespace PZero.app
             while (!valid)
             {
                 i = System.Console.ReadLine();
+                if(i.ToUpper()=="this is not correct input".ToUpper())
+                {
+                    System.Console.WriteLine("that is correct");
+                    continue;
+                }
                 if (main)
                 {
                     if (i == "q" || i == "Q") return "Q";
@@ -144,7 +149,7 @@ namespace PZero.app
             return i;
         }
 
-        static public string GetProductName()
+        static public string GetUnformatedName()
         {
             string i = "";
             bool valid = false;
@@ -152,13 +157,13 @@ namespace PZero.app
             {
                 valid = true;
                 i = System.Console.ReadLine();
-                if (i.IndexOf('_') != -1)
+                if (i.Length < 1)
                 {
-                    System.Console.WriteLine("cannot contain \'_\'");
+                    System.Console.WriteLine("Input empty");
                     valid = false;
                 }
             }
-            return i + '_';
+            return i;
         }
 
         public static string RegString(string x)

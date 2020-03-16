@@ -1,4 +1,5 @@
 using PZero.lib;
+using System;
 using System.Collections.Generic;
 
 namespace PZero.app
@@ -7,10 +8,16 @@ namespace PZero.app
     class Data
     {
         public List<Customer> customers = new List<Customer>();
+        private List<Store> Stores = new List<Store>();
 
         public void AddCustomer(Customer x)
         {
             customers.Add(x);
+        }
+
+        public void AddStore(string x)
+        {
+            Stores.Add(new Store(x));
         }
 
         public Customer SearchCustomer()
@@ -42,5 +49,7 @@ namespace PZero.app
 
             return found[0];
         }
+
+        internal List<Store> GetStores() => Stores;
     }
 }
