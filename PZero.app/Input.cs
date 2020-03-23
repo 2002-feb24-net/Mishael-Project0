@@ -1,3 +1,5 @@
+using System;
+
 namespace PZero.app
 {
 
@@ -19,7 +21,7 @@ namespace PZero.app
                     output = GetPrice();
                     break;
                 case InputType.name:
-                    output = GetLetteredString();
+                    output = GetName();
                     break;
                 case InputType.unformatedName:
                     output = GetUnformatedName();
@@ -125,7 +127,7 @@ namespace PZero.app
             return i;
         }
 
-        private static string GetLetteredString()
+        internal static string GetName()
         {
             string i = "";
             bool valid = false;

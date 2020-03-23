@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PZero.lib
 {
-    class Class1
+    public class Order
     {
     }
 }

@@ -1,11 +1,10 @@
-using PZero.lib;
 using System;
 using System.Collections.Generic;
 
-namespace PZero.app
+namespace PZero.lib
 {
 
-    class Data
+    public class Data
     {
         public List<Customer> customers = new List<Customer>();
         private List<Store> Stores = new List<Store>();
@@ -20,16 +19,15 @@ namespace PZero.app
             Stores.Add(new Store(x));
         }
 
-        public Customer SearchCustomer()
+        public Customer SearchCustomer(Action<List<Customer>> OutputNames, Func<string[]> GetNames)
         {
             List<Customer> found = new List<Customer>();
 
             while (found.Count != 1)
             {
-                Output.PrintCustNames(found);
+                OutputNames(found);
                 while (found.Count > 0) found.RemoveAt(0);
-                string[] input = Input.GetInput(InputType.name).Split(",");
-                for (int i = 0; i < input.Length; i++) input[i] = Input.RegString(input[i]);
+                string[] input = GetNames();
                 foreach (var item in customers)
                 {
                     bool isIn = true;
@@ -50,6 +48,6 @@ namespace PZero.app
             return found[0];
         }
 
-        internal List<Store> GetStores() => Stores;
+        public List<Store> GetStores() => Stores;
     }
 }

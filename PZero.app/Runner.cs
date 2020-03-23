@@ -7,7 +7,7 @@ namespace PZero.app
         private bool manageMode = false;
         private string state = "";
         private string input = "";
-        private PZero.lib.Data storage = new Data();
+        private Data storage = new Data();
         Customer active;
         Store activeS;
 
@@ -26,7 +26,7 @@ namespace PZero.app
                 case "2":
                     break;
                 case "3":
-                    active = storage.SearchCustomer();
+                    active = storage.SearchCustomer(Output.PrintCustNames, () => new string[] { Input.GetName() });
                     break;
                 case "4": break;
                 case "5":

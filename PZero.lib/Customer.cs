@@ -8,7 +8,7 @@ namespace PZero.lib
         private string fname = "NULL";
         private string lname = "NULL";
         private string regname = "NULL";
-        private List<IOrderCart> history = new List<IOrderCart>();
+        private List<Order> history = new List<Order>();
 
         public Customer(string name)
         {
@@ -24,9 +24,9 @@ namespace PZero.lib
         public string GetFName() => fname;
         public string GetLName() => lname;
         public string GetRName() => regname;
-        public List<IOrderCart> GetOrders() => history;
+        public List<Order> GetOrders() => history;
 
-        public void AddOrder(IOrderCart x) => history.Add(x);
+        public void AddOrder(Order x) => history.Add(x);
 
         public void SetFirst(string x)
         {

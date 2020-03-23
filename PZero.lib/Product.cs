@@ -5,11 +5,13 @@ namespace PZero.lib
         string name;
         double price;
         string regname;
+        int stock;
 
-        public Product(string n, double p)
+        public Product(string n, double p, int s)
         {
             name = n;
             price = p;
+            stock = s;
             SetRegName();
         }
 

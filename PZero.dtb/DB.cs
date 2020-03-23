@@ -3,11 +3,12 @@ using System;
 
 namespace PZero.dtb
 {
-    public class DataBase : DbContext
+    public class DB : DbContext
     {
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(Secret.SecretString);
         }
     }
 }
