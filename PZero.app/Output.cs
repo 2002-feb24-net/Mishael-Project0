@@ -13,7 +13,7 @@ namespace PZero.app
             PrintStringList(print);
         }
 
-        private static void PrintStringList(string[] x)
+        public static void PrintStringList(string[] x)
         {
             string output = "";
 

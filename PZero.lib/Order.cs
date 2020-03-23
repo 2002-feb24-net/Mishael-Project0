@@ -4,8 +4,7 @@ using System.Text;
 
 namespace PZero.lib
 {
-    public interface IOrderCart
+    class Class1
     {
-
     }
 }

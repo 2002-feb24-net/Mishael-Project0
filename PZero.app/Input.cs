@@ -75,6 +75,16 @@ namespace PZero.app
             return i;
         }
 
+        public int SelectFromList(string[] x)
+        {
+            string[] print = x;
+            for (int i = 1; i <= x.Length; i++) print[i - 1] = $"{i}. " + print[i - 1];
+            Output.PrintStringList(print);
+            string[] ops = new string[x.Length];
+            for (int i = 0; i < x.Length; i++) ops[i] = (i + 1) + "";
+            return int.Parse(GetSmallNumber(ops,false));
+        }
+
         private static bool IsInt(string x)
         {
             bool valid = true;

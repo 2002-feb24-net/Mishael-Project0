@@ -7,8 +7,9 @@ namespace PZero.app
         private bool manageMode = false;
         private string state = "";
         private string input = "";
-        private Data storage = new Data();
+        private PZero.lib.Data storage = new Data();
         Customer active;
+        Store activeS;
 
         public bool GetInput()
         {
