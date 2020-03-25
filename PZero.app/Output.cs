@@ -1,4 +1,3 @@
-using PZero.lib;
 using System;
 using System.Collections.Generic;
 
@@ -6,10 +5,10 @@ namespace PZero.app
 {
     class Output
     {
-        public static void PrintCustNames(List<Customer> x)
+        public static void PrintCustNames(List<string> x)
         {
             string[] print = new string[x.Count];
-            for (int i = 0; i < x.Count; i++) print[i] = x[i].GetName() + " ";
+            for (int i = 0; i < x.Count; i++) print[i] = x[i] + " ";
             PrintStringList(print);
         }
 
@@ -33,10 +32,10 @@ namespace PZero.app
             System.Console.WriteLine(output);
         }
 
-        public static void PrintStores(List<Store> x)
+        public static void PrintStores(List<string> x)
         {
             string[] print = new string[x.Count];
-            for (int i = 0; i < x.Count; i++) print[i] = x[i].GetName() + "\n";
+            for (int i = 0; i < x.Count; i++) print[i] = x[i] + "\n";
             PrintStringList(print);
         }
     }
