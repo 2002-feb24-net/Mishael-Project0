@@ -66,7 +66,7 @@ namespace PZero.dtb
                 decimal price = 0;
                 foreach (var orderdata in order.Cart)
                 {
-                    price += orderdata.Price;
+                    price += orderdata.Price*orderdata.Quantity;
                 }
                 var ticket = new Orders
                 {
@@ -241,6 +241,36 @@ namespace PZero.dtb
                         output.Add(item.Name);
                     }
                 }
+                return output;
+            }
+        }
+
+        public static List<string> GetProductNames(int x)
+        {
+            using (var context = new PZeroContext())
+            {
+                List<string> output = new List<string>();
+                foreach (var item in context.Products) if (item.LocId == x) output.Add(item.Name);
+                return output;
+            }
+        }
+
+        public static List<decimal> GetProductPrices(int x)
+        {
+            using (var context = new PZeroContext())
+            {
+                List<decimal> output = new List<decimal>();
+                foreach (var item in context.Products) if (item.LocId == x) output.Add(item.Price);
+                return output;
+            }
+        }
+
+        public static List<int> GetProductQuantities(int x)
+        {
+            using (var context = new PZeroContext())
+            {
+                List<int> output = new List<int>();
+                foreach (var item in context.Products) if (item.LocId == x) output.Add(item.Stock);
                 return output;
             }
         }

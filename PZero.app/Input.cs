@@ -74,11 +74,18 @@ namespace PZero.app
             }
             return cart;
         }
-        
-        private static int GetProduct(List<string> names, List<decimal> prices, List<int> quanties)
+
+        public static int GetProduct(int x)
+        {
+            return GetProduct(Data.GetProductNames(x),
+                        Data.GetProductPrices(x),
+                        Data.GetProductQuantities(x));
+        }
+
+        public static int GetProduct(List<string> names, List<decimal> prices, List<int> quanties)
         {
             string input = "";
-            for (int i = 0; i < names.Count; i++) Console.WriteLine($"{i + 1}. {names[i]} in stock: {quanties[i]} ${prices[i]}");
+            for (int i = 0; i < names.Count; i++) Console.WriteLine($"{i + 1}. {names[i]}\t${prices[i]}\tin stock: {quanties[i]}");
             Console.WriteLine("Select a Product");
             bool valid = false;
             while (!valid)
@@ -102,7 +109,7 @@ namespace PZero.app
             while (!valid && !output.Contains(end))
             {
                 output = System.Console.ReadLine();
-                valid = IsInt(output);
+                valid = IsInt(output) || output.Contains(end);
                 if (!valid) Console.WriteLine("invalid, enter an integer");
             }
 

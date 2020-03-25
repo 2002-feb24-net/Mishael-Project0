@@ -46,8 +46,9 @@ namespace PZero.app
                     Data.AddProduct(name, activeStore, price, stock);
                     break;
                 case "10":
+                    int product = Input.GetProduct(activeStore);
                     System.Console.Write("by how much: ");
-                    input = Input.GetInput(InputType.Int);
+                    Data.StockProduct(product, int.Parse(Input.GetInput(InputType.Int)));
                     break;
                 case "11":
                     Data.AddOrder(activeCustomer,Input.PlaceOrder(activeCustomer));
@@ -107,8 +108,6 @@ namespace PZero.app
             System.Console.WriteLine("1. Add Customer");
             System.Console.WriteLine("2. List Customers");
             System.Console.WriteLine("6. List availible stores");
-            System.Console.WriteLine("7. Set active store");
-            if (activeStore != -1) System.Console.WriteLine($"Current active location : {Data.GetStore(activeStore)}");
             System.Console.WriteLine("3. Select active Customer");
             if (activeCustomer != -1)
             {
@@ -119,6 +118,8 @@ namespace PZero.app
             if (manageMode)
             {
                 System.Console.WriteLine("Manager mode:");
+                System.Console.WriteLine("7. Set active store");
+                if (activeStore != -1) System.Console.WriteLine($"Current active location : {Data.GetStore(activeStore)}");
                 System.Console.WriteLine("5. Add a store");
                 System.Console.WriteLine("8. Remove active store");
                 System.Console.WriteLine("9. add a product");
@@ -154,11 +155,11 @@ namespace PZero.app
             {
                 if (activeCustomer == -1)
                 {
-                    state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "6", "7");
+                    state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "6");
                 }
                 else
                 {
-                    state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "6", "7", "11");
+                    state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "6", "11");
                 }
             }
             
