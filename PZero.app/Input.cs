@@ -172,9 +172,8 @@ namespace PZero.app
 
         private static bool IsInt(string x)
         {
-            bool valid = true;
-            for (int i = 0; i < x.Length; i++) valid = valid && x[i] >= '0' && x[i] <= '9';
-            return valid;
+            int y = 0;
+            return int.TryParse(x, out y);
         }
 
         private static string GetPrice()

@@ -53,6 +53,10 @@ namespace PZero.app
                 case "11":
                     Data.AddOrder(activeCustomer,Input.PlaceOrder(activeCustomer));
                     break;
+                case "12":
+                case "13":
+                case "14":
+                    break;
                 case "mng":
                     manageMode = true;
                     state = "none";
@@ -92,7 +96,14 @@ namespace PZero.app
                 case "8":
                     Data.RemoveStore(activeStore);
                     break;
-                case "10":
+                case "12":
+                    System.Console.WriteLine("\n" + Data.PersonHistory(activeCustomer) + "\n");
+                    break;
+                case "13":
+                    System.Console.WriteLine("\n" + Data.LocationHistory(activeStore) + "\n");
+                    break;
+                case "14":
+                    System.Console.WriteLine("\n" + Data.MorePersonHistory(activeCustomer) + "\n");
                     break;
                 default: break;
             }
@@ -124,6 +135,9 @@ namespace PZero.app
                 System.Console.WriteLine("8. Remove active store");
                 System.Console.WriteLine("9. add a product");
                 System.Console.WriteLine("10. stock a product");
+                System.Console.WriteLine("12. view active customers order history");
+                System.Console.WriteLine("13. view order details of active location");
+                System.Console.WriteLine("14. view active customers detailed order history");
             }
 
             if (manageMode)
@@ -132,22 +146,22 @@ namespace PZero.app
                 {
                     if (activeStore == -1)
                     {
-                        state = Input.GetInput(InputType.mainSelect,"1", "2", "3", "5", "6", "7");
+                        state = Input.GetInput(InputType.mainSelect,"1", "2", "3", "5", "6", "7", "14");
                     }
                     else
                     {
-                        state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "5", "6", "7", "8" , "9", "10");
+                        state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "5", "6", "7", "8" , "9", "10", "13", "14");
                     }
                 }
                 else
                 {
                     if (activeStore == -1)
                     {
-                        state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "5", "6", "7", "11");
+                        state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "5", "6", "7", "11", "12", "14");
                     }
                     else
                     {
-                        state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11");
+                        state = Input.GetInput(InputType.mainSelect, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14");
                     }
                 }
             }
