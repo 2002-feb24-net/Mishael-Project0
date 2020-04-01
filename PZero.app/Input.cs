@@ -121,6 +121,10 @@ namespace PZero.app
             string i = "";
             bool valid = false;
             int length = 0;
+            for (iint i=0;i<10;i++)
+            {
+                System.Console.WriteLine("this is random");
+            }
             foreach (string x in ops) if (x.Length > length) length = x.Length;
             while (!valid)
             {
