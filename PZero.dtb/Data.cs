@@ -18,6 +18,62 @@ namespace PZero.dtb
             }
         }
 
+        public static string PersonHistory(int ID)
+        {
+            using (var context = new PZeroContext())
+            {
+                string output = "";
+                foreach (var item in context.Orders)
+                {
+                    if (item.CustId == ID)
+                    {
+                        output += $"{item.OrdId}. Time placed: {item.Stamp} Total: {item.Total}\n";
+                    }
+                }
+                return output.Substring(0,output.Length-1);
+            }
+        }
+
+        public static string LocationHistory(int ID)
+        {
+            using (var context = new PZeroContext())
+            {
+                string output = "";
+                foreach (var item in context.OrderData)
+                {
+                    using (var context2 = new PZeroContext())
+                    {
+                        if (context2.Products.Find(item.PrdId).LocId == ID)
+                        {
+                            output += $"{item.DataId}. Quantity: {item.Quantity} Item price: {item.Price}" +
+                                $" Time placed: {context2.Orders.Find(item.OrdId).Stamp}\n";
+                        }
+                    }
+                }
+                return output.Substring(0, output.Length - 1);
+            }
+        }
+
+        public static string MorePersonHistory(int ID)
+        {
+            using (var context = new PZeroContext())
+            {
+                string output = "";
+                foreach (var item in context.OrderData)
+                {
+                    using (var context2 = new PZeroContext())
+                    {
+                        if (context2.Orders.Find(item.OrdId).CustId == ID)
+                        {
+                            output += $"{item.DataId}. Quantity: {item.Quantity} Item price: {item.Price}" +
+                                $" Time placed: {context2.Orders.Find(item.OrdId).Stamp}\n";
+                        }
+                    }
+                }
+                return output.Substring(0, output.Length - 1);
+            }
+        }
+
         public static int GetQuantity(int ID, Func<int> GetInt)
         {
             using (var context = new PZeroContext())
@@ -66,7 +122,7 @@ namespace PZero.dtb
                 decimal price = 0;
                 foreach (var orderdata in order.Cart)
                 {
-                    price += orderdata.Price;
+                    price += orderdata.Price*orderdata.Quantity;
                 }
                 var ticket = new Orders
                 {
@@ -241,6 +297,36 @@ namespace PZero.dtb
                         output.Add(item.Name);
                     }
                 }
+                return output;
+            }
+        }
+
+        public static List<string> GetProductNames(int x)
+        {
+            using (var context = new PZeroContext())
+            {
+                List<string> output = new List<string>();
+                foreach (var item in context.Products) if (item.LocId == x) output.Add(item.Name);
+                return output;
+            }
+        }
+
+        public static List<decimal> GetProductPrices(int x)
+        {
+            using (var context = new PZeroContext())
+            {
+                List<decimal> output = new List<decimal>();
+                foreach (var item in context.Products) if (item.LocId == x) output.Add(item.Price);
+                return output;
+            }
+        }
+
+        public static List<int> GetProductQuantities(int x)
+        {
+            using (var context = new PZeroContext())
+            {
+                List<int> output = new List<int>();
+                foreach (var item in context.Products) if (item.LocId == x) output.Add(item.Stock);
                 return output;
             }
         }
